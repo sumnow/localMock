@@ -2,12 +2,20 @@
 const _all = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwkyz0123456789_'
 //随机数字
 function rint(i, l) {
-    return Math.round(Math.random() * (l - i) + i)
+    if (l >= i) {
+        return Math.floor(Math.random() * (l - i + 1) + i)
+    } else {
+        return 1;
+    }
 }
 //获取boolean
 //todo : bool(i,l) 获取i/l几率为真的bool
-function bool() {
-    return rint(0, 1) === 0;
+function bool(i, l) {
+    if (i >= 1 && l >= 1) {
+        return rint(0, l) > i
+    } else {
+        return rint(0, 1) === 0;
+    }
 }
 //随机中文
 function cstr(i, l) {
@@ -82,29 +90,36 @@ function str(i, l) {
 //随机数组
 //arr(4,5,'str',1,3) //生成一个长度为4-5，每项为1-3长度的字符串.
 const arr = function (i, l, fun, m, n) {
-    let max = rint(i,l);
-    let arr =[];
-    for(let i = 0; i < max; i++) {
-        let le = eval(`${fun}(${m},${n})`)
-        arr.push(le);
+    let max = rint(i, l);
+    let arr = [];
+    if (n) {
+        for (let i = 0; i < max; i++) {
+            let le = eval(`${fun}(${m},${n})`)
+            arr.push(le);
+        }
+    } else {
+        for (let i = 0; i < max; i++) {
+            let le = eval(`${fun}(${m})`)
+            arr.push(le);
+        }
     }
     return arr
 }
 
 //随机对象
-// obj({name: 'arr|str,1,2,`str`,3,4'})
+// obj({name: 'arr|1,2,`str`,3,4'})
 function obj(o) {
     Object.keys(o).forEach((v) => {
         // let _obj = {};
-        if (typeof (o[v]) === 'string') {
+        if (typeof (o[v]) === 'string' && o[v].includes('|')) {
             let osp = o[v].split('|');
-            // console.log(osp)
-            if (osp[0] == 'arr') {
-                // console.log(osp[1]);
-                var ospr = eval(`arr(${osp[1]})`);
-            } else {
-                var ospr = eval(`${osp[0]}(${osp[1]})`);
-            }
+            // // console.log(osp)
+            // if (osp[0] == 'arr') {
+            //     // console.log(osp[1]);
+            //     var ospr = eval(`arr(${osp[1]})`);
+            // } else {
+            var ospr = eval(`${osp[0]}(${osp[1]})`);
+            // }
             o[v] = ospr;
         }
     })
@@ -127,4 +142,23 @@ const $m = {
 }
 
 module.exports = $m;
+
+
+
+var x = {
+    body: {
+        key: $m.arr(1,3,'str',1,3),
+        value: $m.rint(1,3),
+        value2: $m.cstr(1,3),
+        aa: [{ name: 1 }, { name: 2 }, { name: 4 }, { name: 6 }, { name: 8 }]
+
+    },
+    body2: {
+        key: $m.arr(1,3,'str',1,3),
+        value: 1,
+        value2: 2,
+        aa: [{ name: 1 }, { name: 2 }, { name: 4 }, { name: 6 }, { name: 8 }]
+    }
+
+}
 

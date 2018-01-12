@@ -1,0 +1,28 @@
+{
+  "name": "localmock",
+  "version": "1.0.0",
+  "description": "local mini-mock ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sumnow/localMock.git"
+  },
+  "keywords": [
+    "mini",
+    "mock",
+    "local",
+    "frontend"
+  ],
+  "author": "mervin(mydia@foxmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumnow/localMock/issues"
+  },
+  "homepage": "https://github.com/sumnow/localMock#readme",
+  "devDependencies": {
+    "tracer": "^0.8.10"
+  }
+}

@@ -108,7 +108,7 @@ var srv = http.createServer(function (req, res) {
       }
     })
   } else {
-    res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'token' });
+    res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*' });
     res.end();
     return;
   }

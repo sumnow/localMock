@@ -2,6 +2,9 @@
 const _all = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwkyz0123456789_'
 //随机数字
 function rint(i, l) {
+    if(!l) {
+        return rint(i,i)
+    }
     if (l >= i) {
         return Math.floor(Math.random() * (l - i + 1) + i)
     } else {
@@ -11,6 +14,9 @@ function rint(i, l) {
 //获取boolean
 //todo : bool(i,l) 获取i/l几率为真的bool
 function bool(i, l) {
+    if(!l) {
+        return bool(i,i)
+    }
     if (i >= 1 && l >= 1) {
         return rint(0, l) > i
     } else {
@@ -19,6 +25,9 @@ function bool(i, l) {
 }
 //随机中文
 function cstr(i, l) {
+    if(!l) {
+        return cstr(i,i)
+    }
     let word = '';
     let max = rint(i, l);
     for (let i = 0; i < max; i++) {
@@ -40,6 +49,9 @@ function _str_num() {
 }
 //随机大写字母
 function str_upp(i, l) {
+    if(!l) {
+        return str_upp(i,i)
+    }
     let word = ''
     let max = rint(i, l);
     for (let i = 0; i < max; i++) {
@@ -49,6 +61,9 @@ function str_upp(i, l) {
 }
 //随机小写字母
 function str_low(i, l) {
+    if(!l) {
+        return str_low(i,i)
+    }
     let word = ''
     let max = rint(i, l);
     for (let i = 0; i < max; i++) {
@@ -58,6 +73,9 @@ function str_low(i, l) {
 }
 //随机字符数字
 function str_num(i, l) {
+    if(!l) {
+        return str_num(i,i)
+    }
     let word = ''
     let max = rint(i, l);
     for (let i = 0; i < max; i++) {
@@ -67,6 +85,9 @@ function str_num(i, l) {
 }
 //图片url
 function str_img(w, d) {
+    if(!l) {
+        return str_img(i,i)
+    }
     let url = '';
     if (!d) {
         url = `https://dummyimage.com/${w}`
@@ -77,6 +98,9 @@ function str_img(w, d) {
 }
 //随机字符串
 function str(i, l) {
+    if(!l) {
+        return str(i,i)
+    }
     let word = '';
     let max = rint(i, l);
     for (let i = 0; i < max; i++) {
@@ -142,23 +166,3 @@ const $m = {
 }
 
 module.exports = $m;
-
-
-
-var x = {
-    body: {
-        key: $m.arr(1,3,'str',1,3),
-        value: $m.rint(1,3),
-        value2: $m.cstr(1,3),
-        aa: [{ name: 1 }, { name: 2 }, { name: 4 }, { name: 6 }, { name: 8 }]
-
-    },
-    body2: {
-        key: $m.arr(1,3,'str',1,3),
-        value: 1,
-        value2: 2,
-        aa: [{ name: 1 }, { name: 2 }, { name: 4 }, { name: 6 }, { name: 8 }]
-    }
-
-}
-

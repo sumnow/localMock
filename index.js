@@ -100,7 +100,7 @@ var srv = http.createServer(function (req, res) {
         //  res.setHeader("Access-Control-Allow-Methods", "*");
         //  res.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token");
         //  res.setHeader("Access-Control-Expose-Headers", "*");
-        res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'token' });
+        res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*' });
         res.write(JSON.stringify(v.data));
         res.end();
         logger.log('\n%s >>> %j', path, JSON.stringify(v.data));

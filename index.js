@@ -5,16 +5,21 @@ var fs = require('fs');
 
 var $m = require('./random');
 
+const needLog = false;
 
-var logger = require('tracer').colorConsole({
-  transport: function (data) {
-    console.log(data.output);
-    fs.appendFile('./file.log', data.output + '\n', (err) => {
-      if (err) throw err;
-    });
-  }
-});
-
+if(needLog) {
+  var logger = require('tracer').colorConsole({
+    transport: function (data) {
+      console.log(data.output);
+      fs.appendFile('./file.log', data.output + '\n', (err) => {
+        if (err) throw err;
+      });
+    }
+  });
+} else {
+  var logger = console;
+}
+ 
 
 //数组
 

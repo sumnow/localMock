@@ -40,4 +40,4 @@ terminal show
 
     input >>> output
 
-![terminal](./asset/terminal.png)
+![terminal](https://github.com/sumnow/mdPhotos/blob/master/localMock_01.png)

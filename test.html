@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous" />
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <title>Mock Test</title>
+    <style>
+        .col-md-4 {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-4">
+            <div>
+                <label for="keyWord">属性名：</label>
+                <input type="text" id="keyWord" class="form-control" />
+                <label for="functionType">类型：</label>
+                <select name="mode" id="functionType" class="form-control">
+                    <option value="rint">数字</option>
+                    <option value="bool">布尔值</option>
+                    <option value="cstr">中文字符串</option>
+                    <option value="str">英文字符串</option>
+                    <option value="str_img">图片地址</option>
+                </select>
+            </div>
+            <div>
+                <label for="">参数：</label>
+                <input type="number" id="paramsFirst" class="form-control"/>
+                至
+                <input type="number" id="paramsSecond" class="form-control"/>
+            </div>
+            <button id="translateBtn" class="btn btn-primary btn-lg">转换</button>
+        </div>
+        <div class="col-md-4">
+            <div>
+                123
+            </div>
+            <button id="addCodeBtn" class="btn btn-primary btn-lg">添加</button>
+        </div>
+        <div class="col-md-4">
+            <label>代码片段：</label>
+            <code id="ResultCode">
+                
+            </code>
+        </div>
+
+        <div class="col-md-12">
+            <div >
+                <code id="messageCode"></code>
+                <div id="codeResponse"></div>
+            </div>
+        </div>                      
+    </div>
+
+    <script>
+
+
+        $('#translateBtn').click(function () {
+            const l = $('#paramsFirst').val();
+            const r = $('#paramsSecond').val();
+            const type = $('#functionType').val();
+            const keyWord = $('#keyWord').val();
+            // console.log(l, r, type)
+            const str = `$m.${type}(${l},${r})`;
+            const keyValue = `{${keyWord}:${str}}`;
+            $('#ResultCode').text(keyValue);
+            
+        })
+
+        $('#addCodeBtn').click(function(){
+            const messageCode = $('#messageCode')
+            messageCode.text(`${messageCode.text()}${$('#ResultCode').text()},`)
+            const sendM = messageCode.text().slice(0,messageCode.text().length-1)
+            $.ajax({
+                url:'http://138.128.192.220:9000/code',
+                data: {
+                    // message: `{date:$m.rint(1,4)}`
+                    message: `{${sendM}}`
+                },
+                method: 'get',
+                success: function(data){
+                    console.log(data)
+                    $('#codeResponse').text(data)
+                }
+            })    
+        })
+    </script>
+</body>
+
+</html>

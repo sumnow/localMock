@@ -76,9 +76,9 @@ var srv = http.createServer(function (req, res) {
   // console.log(validParam)
 
   
-  if(!params.message) {
+  if(!params.$m_message) {
     logger.log('\nerror from %s' , path);
-
+    
     res.writeHead(404, { "Content-Type": "text/plain" });
     // res.setHeader(404, { "Content-Type": "text/plain" });
     res.end("404 error! File not found.");
@@ -86,16 +86,16 @@ var srv = http.createServer(function (req, res) {
   }
 
   try {
-    var mel = eval(params.message)
+    var mel = eval(params.$m_message)
   } catch (e) {
     validParam = false;
-    logger.log('\n%s', e.message)
+    logger.log('\n%s', e.$m_message)
     //  res.setHeader("Access-Control-Expose-Headers", "*");
   }
 
   if (validParam) {
       url_data.push({
-        data: eval(params.message)
+        data: eval(params.$m_message)
       });
     // logger.log('\n%d', url_data.length)
     url_data.forEach((v) => {

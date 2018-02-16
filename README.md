@@ -26,15 +26,15 @@ A powerful and customizable logging library for node.js
 
 You can use the link to open the browser to view
 
-[http://localhost:9000/int?message=$m.rint(1,3)](http://localhost:9000/int?message=$m.rint(1,3))
+[http://localhost:9000/int?$m_message=$m.rint(1,3)](http://localhost:9000/int?$m_message=$m.rint(1,3))
     
-[http://localhost:9000/object?message=$m.obj({name: $m.cstr(1,4)})](http://localhost:9000/object?message=$m.obj({name: $m.cstr(1,4)}))
+[http://localhost:9000/object?$m_message=$m.obj({name: $m.cstr(1,4)})](http://localhost:9000/object?message=$m.obj({name: $m.cstr(1,4)}))
 
-[http://localhost:9000/array?message=$m.arr(4,5,'str_upp',1,3)](http://localhost:9000/array?message=$m.arr(4,5,'str_upp',1,3))
+[http://localhost:9000/array?$m_message=$m.arr(4,5,'str_upp',1,3)](http://localhost:9000/array?message=$m.arr(4,5,'str_upp',1,3))
 
-[http://localhost:9000/arrinobj?message=$m.obj({hello:$m.arr(3,4,'str_low',1,3)})](http://localhost:9000/arrinobj?message=$m.obj({hello:$m.arr(3,4,'str_low',1,3)}))
+[http://localhost:9000/arrinobj?$m_message=$m.obj({hello:$m.arr(3,4,'str_low',1,3)})](http://localhost:9000/arrinobj?message=$m.obj({hello:$m.arr(3,4,'str_low',1,3)}))
 
-[http://localhost:9000/objinarr?message=[$m.obj({hello:$m.arr(3,4,'str_low',1,3)})]](http://localhost:9000/objinarr?message=[$m.obj({hello:$m.arr(3,4,'str_low',1,3)})])
+[http://localhost:9000/objinarr?$m_message=[$m.obj({hello:$m.arr(3,4,'str_low',1,3)})]](http://localhost:9000/objinarr?message=[$m.obj({hello:$m.arr(3,4,'str_low',1,3)})])
 
 terminal show 
 

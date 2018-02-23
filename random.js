@@ -15,12 +15,12 @@ function rint(i, l) {
 //todo : bool(i,l) 获取i/l几率为真的bool
 function bool(i, l) {
     if(!l) {
-        return bool(i,i)
+        return bool(0,1)
     }
     if (i >= 1 && l >= 1) {
-        return rint(0, l) > i
+        return rint(0, l) < i
     } else {
-        return rint(0, 1) === 0;
+        return rint(0, 1) >= 0.5;
     }
 }
 //随机中文
@@ -85,8 +85,8 @@ function str_num(i, l) {
 }
 //图片url
 function str_img(w, d) {
-    if(!l) {
-        return str_img(i,i)
+    if(!d) {
+        return str_img(w,w)
     }
     let url = '';
     if (!d) {

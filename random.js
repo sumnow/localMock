@@ -116,15 +116,22 @@ function str(i, l) {
 const arr = function (i, l, fun, m, n) {
     let max = rint(i, l);
     let arr = [];
-    if (n) {
-        for (let i = 0; i < max; i++) {
-            let le = eval(`${fun}(${m},${n})`)
-            arr.push(le);
+    if (typeof fun === 'string' ) {
+        if (m) {
+            for (let i = 0; i < max; i++) {
+                let le = eval(`${fun}(${m},${n})`)
+                arr.push(le);
+            }
+        } else {
+            for (let i = 0; i < max; i++) {
+                // console.log(JSON.parse(JSON.stringify(fun)))
+                let le = eval(`${fun}`)
+                arr.push(le);
+            }            
         }
-    } else {
+    } else if (fun instanceof Object) {
         for (let i = 0; i < max; i++) {
-            let le = eval(`${fun}(${m})`)
-            arr.push(le);
+            arr.push(fun);
         }
     }
     return arr
@@ -145,6 +152,8 @@ function obj(o) {
             var ospr = eval(`${osp[0]}(${osp[1]})`);
             // }
             o[v] = ospr;
+        } else {
+            o[v] = eval(o[v])
         }
     })
     return o;

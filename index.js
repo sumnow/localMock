@@ -86,10 +86,11 @@ var srv = http.createServer(function (req, res) {
   }
 
   try {
+    console.log(params.$m_message)
     var mel = eval(params.$m_message)
   } catch (e) {
     validParam = false;
-    logger.log('\n%s', e.$m_message)
+    logger.log('\n[error] transform $m_message to expect type but get (%s)', e.$m_message)
     //  res.setHeader("Access-Control-Expose-Headers", "*");
   }
 

@@ -2,8 +2,8 @@
 const _all = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwkyz0123456789_'
 //随机数字
 function rint(i, l) {
-    if(!l) {
-        return rint(i,i)
+    if (!l) {
+        return rint(i, i)
     }
     if (l >= i) {
         return Math.floor(Math.random() * (l - i + 1) + i)
@@ -14,8 +14,8 @@ function rint(i, l) {
 //获取boolean
 //todo : bool(i,l) 获取i/l几率为真的bool
 function bool(i, l) {
-    if(!l) {
-        return bool(0,1)
+    if (!l) {
+        return bool(0, 1)
     }
     if (i >= 1 && l >= 1) {
         return rint(0, l) < i
@@ -25,8 +25,8 @@ function bool(i, l) {
 }
 //随机中文
 function cstr(i, l) {
-    if(!l) {
-        return cstr(i,i)
+    if (!l) {
+        return cstr(i, i)
     }
     let word = '';
     let max = rint(i, l);
@@ -49,8 +49,8 @@ function _str_num() {
 }
 //随机大写字母
 function str_upp(i, l) {
-    if(!l) {
-        return str_upp(i,i)
+    if (!l) {
+        return str_upp(i, i)
     }
     let word = ''
     let max = rint(i, l);
@@ -61,8 +61,8 @@ function str_upp(i, l) {
 }
 //随机小写字母
 function str_low(i, l) {
-    if(!l) {
-        return str_low(i,i)
+    if (!l) {
+        return str_low(i, i)
     }
     let word = ''
     let max = rint(i, l);
@@ -73,8 +73,8 @@ function str_low(i, l) {
 }
 //随机字符数字
 function str_num(i, l) {
-    if(!l) {
-        return str_num(i,i)
+    if (!l) {
+        return str_num(i, i)
     }
     let word = ''
     let max = rint(i, l);
@@ -85,8 +85,8 @@ function str_num(i, l) {
 }
 //图片url
 function str_img(w, d) {
-    if(!d) {
-        return str_img(w,w)
+    if (!d) {
+        return str_img(w, w)
     }
     let url = '';
     if (!d) {
@@ -98,8 +98,8 @@ function str_img(w, d) {
 }
 //随机字符串
 function str(i, l) {
-    if(!l) {
-        return str(i,i)
+    if (!l) {
+        return str(i, i)
     }
     let word = '';
     let max = rint(i, l);
@@ -113,10 +113,18 @@ function str(i, l) {
 
 //随机数组
 //arr(4,5,'str',1,3) //生成一个长度为4-5，每项为1-3长度的字符串.
+
+// **todo**
+// arr(1,4,{name:1,str:1}) //error 
+// arr(1,4 {naem:"123"})
+// 上面这种在传入一个对象，然后复制这个对象的情况下，只可以有一个属性，多属性会报错
+// arr(1,4,"{name:$m.str(13)") //success
+// 使用字符串解析可以解决
+
 const arr = function (i, l, fun, m, n) {
     let max = rint(i, l);
     let arr = [];
-    if (typeof fun === 'string' ) {
+    if (typeof fun === 'string') {
         if (m) {
             for (let i = 0; i < max; i++) {
                 let le = eval(`${fun}(${m},${n})`)
@@ -127,7 +135,7 @@ const arr = function (i, l, fun, m, n) {
                 // console.log(JSON.parse(JSON.stringify(fun)))
                 let le = eval(`${fun}`)
                 arr.push(le);
-            }            
+            }
         }
     } else if (fun instanceof Object) {
         for (let i = 0; i < max; i++) {
@@ -152,8 +160,6 @@ function obj(o) {
             var ospr = eval(`${osp[0]}(${osp[1]})`);
             // }
             o[v] = ospr;
-        } else {
-            o[v] = eval(o[v])
         }
     })
     return o;

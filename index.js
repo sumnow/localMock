@@ -64,7 +64,7 @@ var srv = http.createServer(function (req, res) {
   var params = url.parse(req.url, true).query;
   var path = url.parse(req.url, true).pathname;
   // let endTime = new Date().getTime().toString().slice(-1);
-
+  logger.log(params.$m_message)
   // 不变性
   // let invariance = params.invariance || true;
   // if (invariance) {
@@ -77,7 +77,7 @@ var srv = http.createServer(function (req, res) {
 
   
   if(!params.$m_message) {
-    logger.log('\nerror from %s' , path);
+    logger.log('\n[TypeError] no params $m_message from %s  ' , path);
     
     res.writeHead(404, { "Content-Type": "text/plain" });
     // res.setHeader(404, { "Content-Type": "text/plain" });
@@ -86,17 +86,18 @@ var srv = http.createServer(function (req, res) {
   }
 
   try {
-    console.log(params.$m_message)
     var mel = eval(params.$m_message)
+    console.log('mle')
+    console.log(mel)
   } catch (e) {
     validParam = false;
-    logger.log('\n[error] transform $m_message to expect type but get (%s)', e.$m_message)
+    logger.log('\n[TypeError] transform $m_message to expect type but get (%s)', e.$m_message)
     //  res.setHeader("Access-Control-Expose-Headers", "*");
   }
 
   if (validParam) {
       url_data.push({
-        data: eval(params.$m_message)
+        data: mel
       });
     // logger.log('\n%d', url_data.length)
     url_data.forEach((v) => {

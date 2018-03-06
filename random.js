@@ -112,7 +112,7 @@ function str(i, l) {
 
 
 //随机数组
-//arr(4,5,'str',1,3) //生成一个长度为4-5，每项为1-3长度的字符串.
+//arr(4,5,'',1,3) //生成一个长度为4-5，每项为1-3长度的字符串.
 
 // **todo**
 // arr(1,4,{name:1,str:1}) //error 
@@ -121,21 +121,19 @@ function str(i, l) {
 // arr(1,4,"{name:$m.str(13)") //success
 // 使用字符串解析可以解决
 
-const arr = function (i, l, fun, m, n) {
+const arr = function (i, l, fun) {
     let max = rint(i, l);
     let arr = [];
     if (typeof fun === 'string') {
-        if (m) {
-            for (let i = 0; i < max; i++) {
-                let le = eval(`${fun}(${m},${n})`)
-                arr.push(le);
+        for (let i = 0; i < max; i++) {
+            let me = eval("("+fun+")")
+            console.log(me)
+            console.log('me')
+            for (l in me) {
+                me[l] = eval(me[l])
             }
-        } else {
-            for (let i = 0; i < max; i++) {
-                // console.log(JSON.parse(JSON.stringify(fun)))
-                let le = eval(`${fun}`)
-                arr.push(le);
-            }
+            console.log(me)
+            arr.push(me);
         }
     } else if (fun instanceof Object) {
         for (let i = 0; i < max; i++) {

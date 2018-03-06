@@ -122,16 +122,11 @@ const arr = function (i, l, fun) {
     if (typeof fun === 'string') {
         for (let i = 0; i < max; i++) {
             let me = eval("("+fun+")")
-            console.log(me)
-            console.log('me')
             for (l in me) {
-                console.log('reg')
-                console.log(reg.test(me[l]))
                 if(reg.test(me[l])) {
                     me[l] = eval(me[l])
                 }
             }
-            console.log(me)
             arr.push(me);
         }
     } else if (fun instanceof Object) {

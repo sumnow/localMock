@@ -87,8 +87,6 @@ var srv = http.createServer(function (req, res) {
 
   try {
     var mel = eval(params.$m_message)
-    console.log('mle')
-    console.log(mel)
   } catch (e) {
     validParam = false;
     logger.log('\n[TypeError] transform $m_message to expect type but get (%s)', e.$m_message)

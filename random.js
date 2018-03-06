@@ -112,25 +112,24 @@ function str(i, l) {
 
 
 //随机数组
-//arr(4,5,'',1,3) //生成一个长度为4-5，每项为1-3长度的字符串.
-
-// **todo**
-// arr(1,4,{name:1,str:1}) //error 
-// arr(1,4 {naem:"123"})
-// 上面这种在传入一个对象，然后复制这个对象的情况下，只可以有一个属性，多属性会报错
-// arr(1,4,"{name:$m.str(13)") //success
-// 使用字符串解析可以解决
+//arr(4,5,'str(1,3)') //生成一个长度为4-5，每项为1-3长度的字符串.
 
 const arr = function (i, l, fun) {
     let max = rint(i, l);
     let arr = [];
+    
+    const reg = /^(rint|bool|cstr|str_upp|str_low|str_num|str|str_img)\((,|\w)+\)/;
     if (typeof fun === 'string') {
         for (let i = 0; i < max; i++) {
             let me = eval("("+fun+")")
             console.log(me)
             console.log('me')
             for (l in me) {
-                me[l] = eval(me[l])
+                console.log('reg')
+                console.log(reg.test(me[l]))
+                if(reg.test(me[l])) {
+                    me[l] = eval(me[l])
+                }
             }
             console.log(me)
             arr.push(me);
